@@ -470,33 +470,32 @@
 
   <script>
     /* =========================================================
-       🔽 PASTE YOUR IMGUR DIRECT LINKS HERE
-       They must start with https://i.imgur.com/
-       Example: "https://i.imgur.com/AbCdEfG.jpg"
+       🔽 USE LOCAL IMAGE PATHS HERE
+       Upload your photos to an "images" folder in your GitHub repo.
+       Then, replace the file names below with your actual file names.
+       Example: "images/my-photo.jpg"
        ========================================================= */
     const IMG = {
-      main: "https://imgur.com/a/BSsFfh9",
+      main: "img/main.jpg", // Replace with your main photo's file name
       gallery: [
-        "https://imgur.com/a/jLJniZs",
-        "https://imgur.com/a/6aMy7or",
-        "https://imgur.com/a/tGgfI3A",
-        "https://imgur.com/a/R2wzKUZ",
-        "https://imgur.com/a/s7Dlvsm",
-        "https://imgur.com/a/Ff9iCfC"
+        "img/1.jpg", // Replace with your first gallery photo
+        "img/2.jpg", // Replace with your second gallery photo
+        "img/3.jpg", // Replace with your third gallery photo
+        "img/4.jpg", // Replace with your fourth gallery photo
+        "img/5.jpg", // Replace with your fifth gallery photo
       ]
     };
 
-    /* ---------- load Imgur images ---------- */
+    /* ---------- load local images ---------- */
     function setImg(img, url) {
       const parent = img.parentElement;
       parent.classList.remove('empty');
 
-      if (!url || url.startsWith('PASTE_')) {
+      if (!url || url.includes('PASTE_')) { // Check for placeholders
         parent.classList.add('empty');
         return;
       }
 
-      img.referrerPolicy = 'no-referrer';
       img.onload = () => parent.classList.remove('empty');
       img.onerror = () => {
         img.removeAttribute('src');
