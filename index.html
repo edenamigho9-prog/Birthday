@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#ffe1ec">
+  <title>Happy Birthday My Love 💕</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Quicksand:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
+
+    html,
+    body {
+      height: 100%
+    }
+
+    body {
+      font-family: 'Quicksand', system-ui, -apple-system, sans-serif;
+      color: #4a2438;
+      background:
+        radial-gradient(1000px 600px at 8% -5%, #fff0f6 0%, transparent 62%),
+        radial-gradient(900px 520px at 105% 105%, #ece3ff 0%, transparent 62%),
+        linear-gradient(160deg, #fff3f8 0%, #ffe1ec 45%, #f1e5ff 100%);
+      overflow: hidden;
+    }
+
+    /* ---------- floating hearts ---------- */
+    #hearts {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0
+    }
+
+    .heart {
+      position: absolute;
+      bottom: -50px;
+      opacity: 0;
+      animation-name: floatUp;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) rotate(0) scale(.6);
+        opacity: 0
+      }
+
+      12% {
+        opacity: .8
+      }
+
+      85% {
+        opacity: .45
+      }
+
+      100% {
+        transform: translateY(-112vh) rotate(30deg) scale(1.15);
+        opacity: 0
+      }
+    }
+
+    /* ---------- slider ---------- */
+    .stage {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      z-index: 1
+    }
+
+    .track {
+      display: flex;
+      height: 100%;
+      touch-action: pan-y;
+      transition: transform .55s cubic-bezier(.22, .85, .3, 1);
+      will-change: transform
+    }
+
+    .slide {
+      flex: 0 0 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      padding: 60px 20px 100px;
+      text-align: center;
+      overflow-y: auto;
+      overscroll-behavior: contain
+    }
+
+    .slide::-webkit-scrollbar {
+      width: 0
+    }
+
+    .inner {
+      width: 100%;
+      max-width: 540px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      padding: 8px 0
+    }
+
+    /* ---------- type ---------- */
+    .eyebrow {
+      font-size: .72rem;
+      letter-spacing: .32em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #c9688f
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: clamp(2.2rem, 10vw, 3.5rem);
+      line-height: 1.08
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: clamp(1.5rem, 6.5vw, 2.1rem);
+      line-height: 1.2
+    }
+
+    .grad {
+      background: linear-gradient(100deg, #e75c8e 0%, #b06bd6 55%, #f2a05a 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent
+    }
+
+    p {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: #6b3a55
+    }
+
+    .small {
+      font-size: .9rem;
+      color: #8a5c76
+    }
+
+    .sign {
+      margin-top: 12px;
+      font-style: italic;
+      font-weight: 600;
+      color: #c1436f
+    }
+
+    /* ---------- cards ---------- */
+    .card {
+      width: 100%;
+      background: rgba(255, 255, 255, .62);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, .9);
+      border-radius: 26px;
+      padding: 24px 20px;
+      box-shadow: 0 20px 45px rgba(190, 110, 150, .16)
+    }
+
+    /* ---------- photos ---------- */
+    .frame {
+      width: 100%;
+      max-width: 330px;
+      aspect-ratio: 4/5;
+      border-radius: 22px;
+      overflow: hidden;
+      border: 6px solid #fff;
+      background: linear-gradient(135deg, #ffc9dd, #dcc6ff);
+      box-shadow: 0 18px 40px rgba(190, 110, 150, .28);
+      display: grid;
+      place-items: center
+    }
+
+    .frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block
+    }
+
+    .frame.empty img {
+      display: none
+    }
+
+    .frame.empty::after {
+      content: "📷  add your photo here";
+      font-size: .8rem;
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, .15)
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      width: 100%
+    }
+
+    .ph {
+      aspect-ratio: 1;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 4px solid #fff;
+      background: linear-gradient(135deg, #ffc9dd, #dcc6ff);
+      box-shadow: 0 10px 24px rgba(190, 110, 150, .22);
+      display: grid;
+      place-items: center
+    }
+
+    .ph img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block
+    }
+
+    .ph.empty img {
+      display: none
+    }
+
+    .ph.empty::after {
+      content: "📷";
+      font-size: 1.3rem;
+      opacity: .85
+    }
+
+    /* ---------- misc ---------- */
+    .cake {
+      font-size: 3rem;
+      animation: pop 2.4s ease-in-out infinite
+    }
+
+    @keyframes pop {
+
+      0%,
+      100% {
+        transform: scale(1) rotate(-4deg)
+      }
+
+      50% {
+        transform: scale(1.12) rotate(4deg)
+      }
+    }
+
+    .big-heart {
+      font-size: 4rem;
+      animation: beat 1.4s ease-in-out infinite
+    }
+
+    @keyframes beat {
+
+      0%,
+      100% {
+        transform: scale(1)
+      }
+
+      25% {
+        transform: scale(1.16)
+      }
+
+      40% {
+        transform: scale(.96)
+      }
+    }
+
+    .swipe-hint {
+      margin-top: 6px;
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      color: #c1436f;
+      animation: bob 1.8s ease-in-out infinite
+    }
+
+    @keyframes bob {
+
+      0%,
+      100% {
+        transform: translateY(0);
+        opacity: .75
+      }
+
+      50% {
+        transform: translateY(6px);
+        opacity: 1
+      }
+    }
+
+    /* ---------- controls ---------- */
+    .nav {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 24px;
+      display: flex;
+      justify-content: center;
+      gap: 9px;
+      z-index: 5
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      background: rgba(180, 110, 150, .32);
+      transition: all .35s
+    }
+
+    .dot.on {
+      width: 28px;
+      border-radius: 6px;
+      background: linear-gradient(90deg, #e75c8e, #b06bd6)
+    }
+
+    .arrow {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, .9);
+      background: rgba(255, 255, 255, .6);
+      backdrop-filter: blur(10px);
+      color: #c1436f;
+      font-size: 20px;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      z-index: 6;
+      transition: .25s;
+      box-shadow: 0 8px 20px rgba(190, 110, 150, .18)
+    }
+
+    .arrow:hover {
+      background: #fff;
+      transform: translateY(-50%) scale(1.07)
+    }
+
+    .arrow:disabled {
+      opacity: .22;
+      pointer-events: none
+    }
+
+    .arrow.prev {
+      left: 14px
+    }
+
+    .arrow.next {
+      right: 14px
+    }
+
+    @media(max-width:560px) {
+      .arrow {
+        display: none
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="hearts"></div>
+
+  <div class="stage">
+    <div class="track" id="track">
+
+      <!-- ================= PAGE 1 ================= -->
+      <section class="slide">
+        <div class="inner">
+          <div class="eyebrow">Today is all about you</div>
+          <h1 class="grad">Happy Birthday<br>Babyy</h1>
+          <div class="cake">🎂</div>
+          <p>Another year of you being the best thing<br>that ever happened to me.</p>
+          <div class="swipe-hint">Swipe to begin →</div>
+        </div>
+      </section>
+
+      <!-- ================= PAGE 2 ================= -->
+      <section class="slide">
+        <div class="inner">
+          <div class="eyebrow">A little note for you</div>
+          <h2 class="grad">To My Favourite Person</h2>
+
+          <div class="frame">
+            <img data-img="main" alt="My favourite person">
+          </div>
+
+          <div class="card">
+            <p>
+              Happy birthday, my love. I don't think I'll ever find the right words
+              for what you mean to me — but I'll keep trying for the rest of my life.
+              You make ordinary days feel like something worth remembering, and you
+              make me want to be a better person just by being around.
+            </p>
+            <p style="margin-top:14px">
+              Thank you for your laugh, your patience, your kindness, and for every
+              little thing you do without even realising it. I hope this year brings
+              you everything you've been quietly hoping for.
+            </p>
+            <p class="sign">— Always yours 💌</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= PAGE 3 ================= -->
+      <section class="slide">
+        <div class="inner">
+          <div class="eyebrow">My favourite view</div>
+          <h2 class="grad">Every Picture, A Memory</h2>
+
+          <div class="gallery">
+            <div class="ph"><img data-img="0" alt=""></div>
+            <div class="ph"><img data-img="1" alt=""></div>
+            <div class="ph"><img data-img="2" alt=""></div>
+            <div class="ph"><img data-img="3" alt=""></div>
+            <div class="ph"><img data-img="4" alt=""></div>
+            <div class="ph"><img data-img="5" alt=""></div>
+          </div>
+
+          <p class="small">…and I still can't pick a favourite.</p>
+        </div>
+      </section>
+
+      <!-- ================= PAGE 4 ================= -->
+      <section class="slide">
+        <div class="inner">
+          <div class="big-heart">💗</div>
+          <h1 class="grad">I Love You</h1>
+
+          <div class="card">
+            <p>
+              Not just today — every single day. I love you in the quiet moments,
+              in the silly arguments, in the plans we make and the ones we don't.
+              You are my favourite hello and my hardest goodbye.
+            </p>
+            <p class="sign">Happy Birthday, Babyy 🎉</p>
+          </div>
+
+          <p class="small">Made with love, just for you.</p>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <button class="arrow prev" id="prev" aria-label="Previous page">‹</button>
+  <button class="arrow next" id="next" aria-label="Next page">›</button>
+  <div class="nav" id="dots"></div>
+
+  <script>
+    /* =========================================================
+       🔽 PASTE YOUR IMGUR DIRECT LINKS HERE
+       They must start with https://i.imgur.com/
+       Example: "https://i.imgur.com/AbCdEfG.jpg"
+       ========================================================= */
+    const IMG = {
+      main: "https://imgur.com/a/BSsFfh9",
+      gallery: [
+        "https://imgur.com/a/jLJniZs",
+        "https://imgur.com/a/6aMy7or",
+        "https://imgur.com/a/tGgfI3A",
+        "https://imgur.com/a/R2wzKUZ",
+        "https://imgur.com/a/s7Dlvsm",
+        "https://imgur.com/a/Ff9iCfC"
+      ]
+    };
+
+    /* ---------- load Imgur images ---------- */
+    function setImg(img, url) {
+      const parent = img.parentElement;
+      parent.classList.remove('empty');
+
+      if (!url || url.startsWith('PASTE_')) {
+        parent.classList.add('empty');
+        return;
+      }
+
+      img.referrerPolicy = 'no-referrer';
+      img.onload = () => parent.classList.remove('empty');
+      img.onerror = () => {
+        img.removeAttribute('src');
+        parent.classList.add('empty');
+      };
+      img.src = url;
+    }
+
+    const mainImg = document.querySelector('[data-img="main"]');
+    if (mainImg) setImg(mainImg, IMG.main);
+
+    document.querySelectorAll('[data-img]').forEach((img) => {
+      const key = img.getAttribute('data-img');
+      if (key === 'main') return;
+      const i = Number(key);
+      if (!Number.isNaN(i)) setImg(img, IMG.gallery[i]);
+    });
+
+    /* ================= floating hearts ================= */
+    (function () {
+      const wrap = document.getElementById('hearts');
+      const glyphs = ['💕', '💗', '🌸', '✨', '💖', '🎀', '💝'];
+      for (let i = 0; i < 20; i++) {
+        const h = document.createElement('span');
+        h.className = 'heart';
+        h.textContent = glyphs[i % glyphs.length];
+        h.style.left = Math.random() * 100 + '%';
+        h.style.fontSize = (12 + Math.random() * 16) + 'px';
+        h.style.animationDuration = (9 + Math.random() * 10) + 's';
+        h.style.animationDelay = (-Math.random() * 19) + 's';
+        wrap.appendChild(h);
+      }
+    })();
+
+    /* ================= slider ================= */
+    const track = document.getElementById('track');
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const dotsBox = document.getElementById('dots');
+    const prevBtn = document.getElementById('prev');
+    const nextBtn = document.getElementById('next');
+    const total = slides.length;
+    let index = 0;
+
+    slides.forEach((_, i) => {
+      const b = document.createElement('button');
+      b.className = 'dot' + (i === 0 ? ' on' : '');
+      b.setAttribute('aria-label', 'Go to page ' + (i + 1));
+      b.addEventListener('click', () => go(i));
+      dotsBox.appendChild(b);
+    });
+    const dots = Array.from(dotsBox.children);
+
+    function go(i) {
+      index = Math.max(0, Math.min(total - 1, i));
+      track.style.transform = 'translateX(' + (-index * 100) + '%)';
+      dots.forEach((d, k) => d.classList.toggle('on', k === index));
+      prevBtn.disabled = index === 0;
+      nextBtn.disabled = index === total - 1;
+    }
+
+    prevBtn.addEventListener('click', () => go(index - 1));
+    nextBtn.addEventListener('click', () => go(index + 1));
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') go(index + 1);
+      if (e.key === 'ArrowLeft') go(index - 1);
+    });
+
+    let startX = 0, startY = 0, dragging = false, axis = null;
+
+    track.addEventListener('touchstart', (e) => {
+      if (e.touches.length > 1) return;
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+      dragging = true;
+      axis = null;
+      track.style.transition = 'none';
+    }, { passive: true });
+
+    track.addEventListener('touchmove', (e) => {
+      if (!dragging) return;
+      const dx = e.touches[0].clientX - startX;
+      const dy = e.touches[0].clientY - startY;
+
+      if (!axis) {
+        if (Math.abs(dx) > 8 && Math.abs(dx) > Math.abs(dy)) axis = 'x';
+        else if (Math.abs(dy) > 8 && Math.abs(dy) > Math.abs(dx)) axis = 'y';
+        else return;
+      }
+      if (axis !== 'x') return;
+
+      e.preventDefault();
+      let off = dx;
+      if ((index === 0 && dx > 0) || (index === total - 1 && dx < 0)) off = dx * 0.3;
+      track.style.transform = 'translateX(calc(' + (-index * 100) + '% + ' + off + 'px))';
+    }, { passive: false });
+
+    function endDrag(e) {
+      if (!dragging) return;
+      dragging = false;
+      track.style.transition = '';
+      if (axis !== 'x') { go(index); return; }
+      const dx = e.changedTouches[0].clientX - startX;
+      if (dx < -55) go(index + 1);
+      else if (dx > 55) go(index - 1);
+      else go(index);
+    }
+    track.addEventListener('touchend', endDrag);
+    track.addEventListener('touchcancel', endDrag);
+
+    go(0);
+  </script>
+</body>
+
+</html>
