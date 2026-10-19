@@ -241,6 +241,39 @@
       opacity: .85
     }
 
+    /* ---------- wish cards (new page) ---------- */
+    .wishes {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 12px
+    }
+
+    .wish {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      text-align: left;
+      background: rgba(255, 255, 255, .62);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, .9);
+      border-radius: 20px;
+      padding: 14px 16px;
+      box-shadow: 0 10px 24px rgba(190, 110, 150, .12)
+    }
+
+    .wish .icon {
+      font-size: 1.3rem;
+      flex: 0 0 auto;
+      line-height: 1.45
+    }
+
+    .wish p {
+      font-size: .92rem;
+      line-height: 1.6
+    }
+
     /* ---------- misc ---------- */
     .cake {
       font-size: 3rem;
@@ -442,7 +475,49 @@
         </div>
       </section>
 
-      <!-- ================= PAGE 4 ================= -->
+      <!-- ================= PAGE 4 : NEW BIRTHDAY WISHES PAGE ================= -->
+      <section class="slide">
+        <div class="inner">
+          <div class="eyebrow">A few more things</div>
+          <h2 class="grad">Birthday Wishes For You</h2>
+
+          <div class="wishes">
+            <div class="wish">
+              <span class="icon">🌟</span>
+              <p>May this year bring you every little thing you've been quietly
+                 wishing for — and a few beautiful surprises you didn't see coming.</p>
+            </div>
+
+            <div class="wish">
+              <span class="icon">😂</span>
+              <p>May you laugh so hard your cheeks hurt, and may you always find
+                 reasons to dance in the kitchen at midnight.</p>
+            </div>
+
+            <div class="wish">
+              <span class="icon">🌻</span>
+              <p>May your days be bright, your coffee always warm, and your heart
+                 always full of the kind of peace that makes you glow.</p>
+            </div>
+
+            <div class="wish">
+              <span class="icon">💫</span>
+              <p>May you never forget how deeply you are loved — not just today,
+                 but every single ordinary Tuesday too.</p>
+            </div>
+
+            <div class="wish">
+              <span class="icon">📸</span>
+              <p>May we make a hundred more memories together, and may I be lucky
+                 enough to be beside you for every single one of them.</p>
+            </div>
+          </div>
+
+          <p class="small">…and a hundred more wishes I'll tell you in person. 💌</p>
+        </div>
+      </section>
+
+      <!-- ================= PAGE 5 ================= -->
       <section class="slide">
         <div class="inner">
           <div class="big-heart">💗</div>
@@ -471,9 +546,9 @@
   <script>
     /* =========================================================
        🔽 USE LOCAL IMAGE PATHS HERE
-       Upload your photos to an "images" folder in your GitHub repo.
+       Upload your photos to an "img" folder in your GitHub repo.
        Then, replace the file names below with your actual file names.
-       Example: "images/my-photo.jpg"
+       Example: "img/my-photo.jpg"
        ========================================================= */
     const IMG = {
       main: "img/main.jpg", // Replace with your main photo's file name
