@@ -241,7 +241,7 @@
       opacity: .85
     }
 
-    /* ---------- wish cards (new page) ---------- */
+    /* ---------- wish cards ---------- */
     .wishes {
       width: 100%;
       display: flex;
@@ -272,6 +272,132 @@
     .wish p {
       font-size: .92rem;
       line-height: 1.6
+    }
+
+    .wish strong {
+      color: #b8457a
+    }
+
+    /* ---------- the question ---------- */
+    .ask {
+      width: 100%;
+      background: rgba(255, 255, 255, .72);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, .95);
+      border-radius: 28px;
+      padding: 26px 20px;
+      box-shadow: 0 22px 48px rgba(190, 110, 150, .22);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      margin-top: 6px
+    }
+
+    .ask h3 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: clamp(1.25rem, 5.6vw, 1.8rem);
+      line-height: 1.3
+    }
+
+    .ask-btns {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 100%
+    }
+
+    .btn {
+      border: none;
+      cursor: pointer;
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 14px 28px;
+      border-radius: 999px;
+      transition: transform .22s ease, box-shadow .22s ease, background .22s ease;
+      -webkit-tap-highlight-color: transparent
+    }
+
+    .btn-yes {
+      color: #fff;
+      background: linear-gradient(100deg, #e75c8e, #b06bd6);
+      box-shadow: 0 12px 26px rgba(190, 110, 150, .42);
+      animation: pulseYes 1.9s ease-in-out infinite
+    }
+
+    @keyframes pulseYes {
+
+      0%,
+      100% {
+        transform: scale(1)
+      }
+
+      50% {
+        transform: scale(1.055)
+      }
+    }
+
+    .btn-yes:hover {
+      transform: scale(1.08)
+    }
+
+    .btn-yes:active {
+      transform: scale(.95)
+    }
+
+    .btn-no {
+      color: #c1436f;
+      background: rgba(255, 255, 255, .92);
+      border: 1px solid rgba(233, 150, 180, .65);
+      box-shadow: 0 8px 20px rgba(190, 110, 150, .14);
+      transform-origin: center
+    }
+
+    .btn-no.wiggle {
+      animation: wiggle .42s ease
+    }
+
+    @keyframes wiggle {
+
+      0%,
+      100% {
+        rotate: 0deg
+      }
+
+      25% {
+        rotate: -7deg
+      }
+
+      75% {
+        rotate: 7deg
+      }
+    }
+
+    .ask.done .ask-btns {
+      display: none
+    }
+
+    .answer {
+      width: 100%;
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height .7s ease, opacity .7s ease;
+      text-align: center
+    }
+
+    .answer.show {
+      max-height: 420px;
+      opacity: 1
+    }
+
+    .answer p {
+      font-size: .96rem;
+      line-height: 1.7
     }
 
     /* ---------- misc ---------- */
@@ -475,7 +601,7 @@ Happy Birthday,Success. Thank you for being you. Thank you for letting me love y
         </div>
       </section>
 
-      <!-- ================= PAGE 4 : NEW BIRTHDAY WISHES PAGE ================= -->
+      <!-- ================= PAGE 4 : BIRTHDAY WISHES ================= -->
       <section class="slide">
         <div class="inner">
           <div class="eyebrow">A few more things</div>
@@ -521,12 +647,72 @@ Happy Birthday,Success. Thank you for being you. Thank you for letting me love y
             <p>
               Not just today — every single day. I love you in the quiet moments,
               in the silly arguments, in the plans we make and the ones we don't.
-              I love you babyyyy 
+              I love you babyyyy
             </p>
-            <p class="sign">Happy Birthday, Babyy 🎉<P>ME AND YOU AGAINST THE WORLD</P></p>
+            <p class="sign">Happy Birthday, Babyy 🎉<br>ME AND YOU AGAINST THE WORLD</p>
           </div>
 
           <p class="small">Made with love, just for you.</p>
+        </div>
+      </section>
+
+      <!-- ================= PAGE 6 : THE QUESTION ================= -->
+      <section class="slide">
+        <div class="inner">
+          <div class="eyebrow">One last thing…</div>
+          <h2 class="grad">All The Little Things</h2>
+
+          <div class="wishes">
+            <div class="wish">
+              <span class="icon">🕊️</span>
+              <p><strong>Your patience.</strong> You listen when I ramble, you stay
+                 calm when I'm not, and you never once make me feel like a burden.
+                 That kind of patience is rare — and it's one of the biggest reasons
+                 I feel so safe with you.</p>
+            </div>
+
+            <div class="wish">
+              <span class="icon">🌿</span>
+              <p><strong>Your character.</strong> You're kind when nobody's watching,
+                 honest even when it's hard, and gentle with people who can't do a
+                 single thing for you. That's who you are at your core — and it is
+                 genuinely beautiful.</p>
+            </div>
+
+            <div class="wish">
+              <span class="icon">✨</span>
+              <p><strong>Your charm.</strong> The way you laugh at your own jokes,
+                 the way you say my name, the way you turn a boring afternoon into
+                 something I'll remember for years. You don't even try — and that's
+                 the best part.</p>
+            </div>
+
+            <div class="wish">
+              <span class="icon">🌷</span>
+              <p><strong>Your smile.</strong> Honestly? It's my favourite thing in
+                 the whole world. It fixes my bad days, it starts my good ones, and
+                 it's the reason I'm always looking for new ways to make you laugh.</p>
+            </div>
+          </div>
+
+          <div class="ask" id="askCard">
+            <div class="big-heart" style="font-size:2.6rem">💖</div>
+            <h3 class="grad">So… will you be my girlfriend?</h3>
+
+            <div class="ask-btns">
+              <button class="btn btn-yes" id="yesBtn">Yes 💕</button>
+              <button class="btn btn-no" id="noBtn">No 🙈</button>
+            </div>
+
+            <div class="answer" id="answer">
+              <p><strong>Yaaay! 🥳💕</strong> You just made me the happiest person
+                 alive. Officially mine — and I'm officially yours. Today, tomorrow,
+                 and every ordinary Tuesday after that.</p>
+              <p class="sign">I love you, babyy 💌</p>
+            </div>
+          </div>
+
+          <p class="small">(No pressure… but the Yes button is right there 😌)</p>
         </div>
       </section>
 
@@ -677,6 +863,63 @@ Happy Birthday,Success. Thank you for being you. Thank you for letting me love y
     track.addEventListener('touchcancel', endDrag);
 
     go(0);
+
+    /* ================= the big question 💖 ================= */
+    const yesBtn = document.getElementById('yesBtn');
+    const noBtn = document.getElementById('noBtn');
+    const askCard = document.getElementById('askCard');
+    const answerBox = document.getElementById('answer');
+
+    const noTexts = [
+      'No 🙈',
+      'Are you sure? 🥺',
+      'Really really sure?',
+      'Think again 😤',
+      'Last chance…',
+      'Okay fine… Yes 💕'
+    ];
+    let noCount = 0;
+    let answered = false;
+
+    function celebrate() {
+      if (answered) return;
+      answered = true;
+      askCard.classList.add('done');
+      answerBox.classList.add('show');
+      burstHearts();
+      setTimeout(() => {
+        answerBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 220);
+    }
+
+    function burstHearts() {
+      const wrap = document.getElementById('hearts');
+      const glyphs = ['💕', '💖', '💗', '✨', '🌸', '💝', '🎉', '💞'];
+      for (let i = 0; i < 28; i++) {
+        const h = document.createElement('span');
+        h.className = 'heart';
+        h.textContent = glyphs[Math.floor(Math.random() * glyphs.length)];
+        h.style.left = Math.random() * 100 + '%';
+        h.style.fontSize = (14 + Math.random() * 22) + 'px';
+        h.style.animationDuration = (3 + Math.random() * 3) + 's';
+        h.style.animationDelay = (Math.random() * 0.7) + 's';
+        h.style.animationIterationCount = '1';
+        wrap.appendChild(h);
+        setTimeout(() => h.remove(), 7500);
+      }
+    }
+
+    yesBtn.addEventListener('click', celebrate);
+
+    noBtn.addEventListener('click', () => {
+      if (noCount >= noTexts.length - 1) { celebrate(); return; }
+      noCount++;
+      noBtn.textContent = noTexts[noCount];
+      noBtn.style.transform = 'scale(' + Math.max(0.66, 1 - noCount * 0.07) + ')';
+      noBtn.classList.remove('wiggle');
+      void noBtn.offsetWidth; // restart the animation
+      noBtn.classList.add('wiggle');
+    });
   </script>
 </body>
 
